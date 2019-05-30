@@ -8,6 +8,7 @@ export default class Login extends Component {
         return (
             <View style={styles.container}>
             <View style={styles.firstContainer}>
+                <KeyboardAvoidingView behavior="position">
         <View style={styles.logoContainer}>
                     <Image resizeMode="contain" style={styles.logo} source={require('../images/Ucsc.jpg')} />
                     
@@ -21,7 +22,9 @@ export default class Login extends Component {
             
                    <LoginForm />
             </View>
+            </KeyboardAvoidingView>
        </View>
+       
        </View>
 
         )
@@ -46,7 +49,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     logoContainer: {
-        //width:deviceWidth*0.4,
+        
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 100,

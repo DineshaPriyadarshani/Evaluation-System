@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text,TextInput, TouchableOpacity, Alert, Button, StyleSheet,StatusBar , Dimensions} from 'react-native';
-//import Firebase from '../../../config/Firebase';
-const  { deviceWidth , deviceHeight } =Dimensions.get('window');
-let deviceWidth = Dimensions.get('window').width;
-let deviceHeight = Dimensions.get('window').height;
+import Firebase from '../../../config/Firebase';
+import HomePage from '../Screens/HomePage';
+
 
 export default class LoginForm extends Component {
     constructor(props) {
@@ -23,8 +22,9 @@ export default class LoginForm extends Component {
       }
       updateInput = e => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.email]: e.target.value
         });
+        console.log(this.email);
         }
         
         handleClickOpen = () => {
@@ -105,7 +105,8 @@ export default class LoginForm extends Component {
               secureTextEntry/>
 
 <TouchableOpacity style={styles.buttonContainer} 
-                    onPress={this.handleLogin.bind(this)}
+                   
+                    onPress={()=>this.handleLogin()}
                      >
              <Text  style={styles.buttonText}>LOGIN</Text>
 </TouchableOpacity> 
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
      padding: 20
     },
     input: {
-      width: deviceWidth * 0.8,
+      
         height: 45,
         width:450,
         borderRadius:30,
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     buttonContainer:{
-      width: deviceWidth * 0.8,
+      
         backgroundColor: '#2980b6',
         paddingVertical: 15
     },

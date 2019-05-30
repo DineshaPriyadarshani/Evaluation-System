@@ -8,8 +8,8 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import Login from './app/components/Login/Login';
-
+//import Login from './app/components/Login/Login';
+import HomePage from './app/components/Screens/HomePage';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -21,7 +21,7 @@ const instructions = Platform.select({
 export default class App extends Component {
   render() {
     return (
-      <Login />
+      <HomePage />
 
       // <View style={styles.container}>
       //   <Text style={styles.welcome}>Welcome to React Native!</Text>
