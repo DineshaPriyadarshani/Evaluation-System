@@ -1,89 +1,134 @@
 import React, { Component } from 'react'
 import { View, Text,TextInput, TouchableOpacity, Alert, Button, StyleSheet,StatusBar , Dimensions} from 'react-native';
 import Firebase from '../../../config/Firebase';
-import HomePage from '../Screens/HomePage';
+import HomePage from '../Screens/Subjects';
+import { NavigationEvents } from 'react-navigation';
 
 
 export default class LoginForm extends Component {
-    constructor(props) {
+    constructor() {
         super(props);
         this.state = {
-         open:false,
-         email:"",
-         password:"",
+         //open:false,
+        //  email:"",
+        //  password:"",
          
          userEmail:"",
          userPassword:"",
-         students:[],
+         //students:[],
         };
-        this.updateInput = this.updateInput.bind(this)
-        this.handleLogin = this.handleLogin.bind(this)
+        // this.updateInput = this.updateInput.bind(this)
+        // this.handleLogin = this.handleLogin.bind(this)
        // console.log(this.state.email);
       }
-      updateInput = e => {
-        this.setState({
-            [e.target.email]: e.target.value
-        });
-        console.log(this.email);
-        }
+      // updateInput = e => {
+      //   this.setState({
+      //       [e.target.email]: e.target.value
+      //   });
+      //   console.log(this.email);
+      //   }
         
-        handleClickOpen = () => {
-            this.setState({ open: true });
-        };
+      //   handleClickOpen = () => {
+      //       this.setState({ open: true });
+      //   };
         
-        handleClose = () => {
-            this.setState({ open: false });
-        };
+      //   handleClose = () => {
+      //       this.setState({ open: false });
+      //   };
         
-        // Login = () =>{
-        //   this.props.navigation.navigate('Homepage');
-        // }
+      //   // Login = () =>{
+      //   //   this.props.navigation.navigate('Homepage');
+      //   // }
         
-        handleLogin = () => {
-          console.log(this.state.userEmail);
-          //this.props.navigation.navigate('Homepage');
-          const students = [];
-          var Ref = Firebase.firestore().collection('students')
-          var query = Ref.where('email', '==',this.state.userEmail).get()
-          .then(snapshot => {
-            if (snapshot.empty) {
-              console.log('No matching documents.');
-              return;
-            }
+      //   handleLogin = () => {
+      //     console.log(this.state.userEmail);
+      //     //this.props.navigation.navigate('Homepage');
+      //     const students = [];
+      //     var Ref = Firebase.firestore().collection('students')
+      //     var query = Ref.where('email', '==',this.state.userEmail).get()
+      //     .then(snapshot => {
+      //       if (snapshot.empty) {
+      //         console.log('No matching documents.');
+      //         return;
+      //       }
         
-            snapshot.forEach((doc) =>{
-              const {email,password,type} = doc.data();
-              students.push({
-                key:doc.id,
-                email,
-                password
+      //       snapshot.forEach((doc) =>{
+      //         const {email,password,type} = doc.data();
+      //         students.push({
+      //           key:doc.id,
+      //           email,
+      //           password
                 
-              });
-            });
+      //         });
+      //       });
         
-            this.setState({
-              email: students[0].email,
-              password: students[0].password,
+      //       this.setState({
+      //         email: students[0].email,
+      //         password: students[0].password,
               
-            });
+      //       });
         
-            //console.log(this.state);
-            const next =  this.handleLoggingType();
-            //console.log(next);
-            window.location.href = next;
-          })
-          .catch(err => {
-            console.log('Error getting documents', err);
-          });
-        }; 
+      //       //console.log(this.state);
+      //       const next =  this.handleLoggingType();
+      //       //console.log(next);
+      //       window.location.href = next;
+      //     })
+      //     .catch(err => {
+      //       console.log('Error getting documents', err);
+      //     });
+      //   }; 
         
-        handleLoggingType = () => {
-          if(this.state.password==this.state.userPassword){
-            console.log("success");
-          } else {
-            console.log("object");
+      //   handleLoggingType = () => {
+      //     if(this.state.password==this.state.userPassword){
+      //       console.log("success");
+      //     } else {
+      //       console.log("object");
+      //     }
+      //   }
+      componentDidMount() {
+        var that = this;
+        Firebase.auth().onAuthStateChanged(function (user) {
+          if (user) {
+            that.redirectUser();
           }
-        }
+        });
+      }
+    
+
+      loginUser = async (userEmail, userPassword) => {
+        
+        //const { navigate } = this.props.navigation;
+        
+          if (userEmail != '' && userPassword != '' ) {
+            
+            try {
+              //const { navigate } = this.props.navigation;
+              Firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
+              .then(function(data){
+                console.log(userEmail);
+                console.log(userPassword);
+                console.log(data);
+                this.props.navigation.navigate("App");
+              }).catch((err) => {
+                alert(err);
+              });
+              console.log(user);
+            } catch (error) {
+              
+              console.log(error);
+            } 
+          } else {
+            alert('Missing email or password');
+          }	
+        
+      }
+
+      redirectUser() {
+        const { navigate } = this.props.navigation;
+        this.props.navigation.navigate("App");
+      }
+        
+
     render() {
         return (
             <View style={StyleSheet.container}>
@@ -106,7 +151,7 @@ export default class LoginForm extends Component {
 
 <TouchableOpacity style={styles.buttonContainer} 
                    
-                    onPress={()=>this.handleLogin()}
+                    onPress={()=>this.loginUser(this.state.userEmail,this.state.userPassword)}
                      >
              <Text  style={styles.buttonText}>LOGIN</Text>
 </TouchableOpacity> 

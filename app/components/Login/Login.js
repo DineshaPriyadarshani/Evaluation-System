@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text , Image,StyleSheet } from 'react-native';
+import { View, Text , Image,StyleSheet, KeyboardAvoidingView } from 'react-native';
 import LoginForm from './LoginForm';
 import { whileStatement } from '@babel/types';
 
@@ -10,7 +10,7 @@ export default class Login extends Component {
             <View style={styles.firstContainer}>
                 <KeyboardAvoidingView behavior="position">
         <View style={styles.logoContainer}>
-                    <Image resizeMode="contain" style={styles.logo} source={require('../images/Ucsc.jpg')} />
+                    <Image resizeMode="contain" style={styles.logo} source={require('../../images/Ucsc.jpg')} />
                     
          </View>
             <View style={styles.topicContainer}>

@@ -14,7 +14,7 @@ class Profile extends Component {
                 <ScrollView style={{width: '100%'}}>
                     <View style={styles.container}>
                         <View style={styles.coverImageArea}>
-                            <Image style={styles.coverImage} source={require('../images/coverPhoto.jpg')}/>
+                            <Image style={styles.coverImage} source={require('../../images/coverPhoto.jpg')}/>
                             <Avatar
                             
                             rounded
