@@ -14,7 +14,7 @@ class Profile extends Component {
                 <ScrollView style={{width: '100%'}}>
                     <View style={styles.container}>
                         <View style={styles.coverImageArea}>
-                            <Image style={styles.coverImage} source={require('../../images/coverPhoto.jpg')}/>
+                            {/* <Image style={styles.coverImage} source={require('../../images/coverPhoto.jpg')}/> */}
                             <Avatar
                             
                             rounded
@@ -22,18 +22,22 @@ class Profile extends Component {
                             
                         />
                         </View>
-                        <Button title="Sign Out"  />
+                        
                     </View>
                     <View style={styles.formArea}>
+                        <View style={styles.input}>
+                        <Text style={styles.text}>Name:</Text>
+                        </View>
+                        
                         <TextInput
-                            placeholder="First Name"
+                            placeholder="Name"
                             placeholderTextColor="rgba(255,255,255,0.8)"
                             style={styles.input}
                             //onChangeText={text => this.setState({ firstName: text })}
                             //value={this.state.firstName}
                         />
                         <TextInput
-                            placeholder="Last Name"
+                            placeholder="Email"
                             placeholderTextColor="rgba(255,255,255,0.8)"
                             style={styles.input}
                             //onChangeText={text => this.setState({ lastName: text })}
@@ -47,21 +51,40 @@ class Profile extends Component {
                             // value={this.state.email}
                         />
                         <TextInput
-                            placeholder="Contact Number"
+                            placeholder="
+                            index Number"
                             placeholderTextColor="rgba(255,255,255,0.8)"
                             style={styles.input}
                             // onChangeText={text => this.setState({ contact: text })}
                             // value={this.state.contact}
                         />
                         <TextInput
-                            placeholder="Address"
+                            placeholder="Registration Number"
                             placeholderTextColor="rgba(255,255,255,0.8)"
                             style={styles.input}
                             // onChangeText={text => this.setState({ address: text })}
                             // value={this.state.address}
                         />
+                        <TextInput
+                            placeholder="Course"
+                            placeholderTextColor="rgba(255,255,255,0.8)"
+                            style={styles.input}
+                            // onChangeText={text => this.setState({ address: text })}
+                            // value={this.state.address}
+                        />
+                        <TextInput
+                            placeholder="Group"
+                            placeholderTextColor="rgba(255,255,255,0.8)"
+                            style={styles.input}
+                            // onChangeText={text => this.setState({ address: text })}
+                            // value={this.state.address}
+                        />
+                        
                     </View>
-                    <Button style={styles.saveButton} title="Save"  />
+                    {/* <Button style={styles.saveButton} title="Save"  /> */}
+                    <View style={styles.buttonArea}>
+                    <Button style={styles.SignOutButton} title="Sign Out"  />
+                    </View>
                 </ScrollView>
             </View>
 
@@ -80,11 +103,12 @@ const styles=StyleSheet.create({
 
     coverImageArea:{
         // backgroundColor:'red',
-        alignSelf:'center',
-        height: '5%',
-        width:'auto',
-        position:'absolute',
-        top:10
+        // alignSelf:'center',
+        // height: '5%',
+        // width:'auto',
+        // position:'absolute',
+        // top:10
+        paddingTop:20
     },
 
     coverImage:{
@@ -97,11 +121,14 @@ const styles=StyleSheet.create({
         width:80,
         height:80,
         borderRadius:80,
-        position: 'relative'
+        position: 'relative',
+       
     },
 
     text:{
         fontSize: 20,
+        color:'#000',
+        marginTop:10
         
     },
 
@@ -110,21 +137,35 @@ const styles=StyleSheet.create({
         height: 45,
         
         borderRadius: 5,
-        backgroundColor: 'rgba(149, 176, 183, 1)',
+        backgroundColor: '#fff',
         marginBottom: 15,
-        color: '#FFF',
+        //color: '#FFF',
         paddingHorizontal: 10
     },
 
     formArea: {
-        paddingTop: 300,
+        paddingTop: 30,
         paddingHorizontal: 10
     },
+    buttonArea: {
+        //paddingTop: 30,
+        paddingHorizontal: 200
+    },
 
-    saveButton: {
+    // saveButton: {
+    //     marginTop:100,
+    //     marginBottom: 100,
+    //     height:45,
+    //     width:100,
+    //     paddingHorizontal: 10,
+
+    // },
+    SignOutButton: {
         marginTop:100,
         marginBottom: 100,
         height:45,
+        width:10,
+        
     },
 
 });

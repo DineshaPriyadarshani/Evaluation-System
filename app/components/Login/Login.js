@@ -4,6 +4,10 @@ import LoginForm from './LoginForm';
 import { whileStatement } from '@babel/types';
 
 export default class Login extends Component {
+    constructor(props){
+        super(props)
+    }
+
     render() {
         return (
             <View style={styles.container}>
